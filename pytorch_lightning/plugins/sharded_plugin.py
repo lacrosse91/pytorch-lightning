@@ -11,7 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-from typing import List, Optional, Union, Any
+from typing import Any, List, Optional, Union
 
 from pytorch_lightning.core.lightning import LightningModule
 from pytorch_lightning.core.optimizer import is_lightning_optimizer
@@ -41,9 +41,6 @@ class DDPShardedPlugin(DDPPlugin):
     def optimizer_state(self, optimizer: 'OSS') -> Optional[dict]:
         optimizer.consolidate_state_dict()
         return self._optim_state_dict(optimizer)
-
-    def on_before_forward(self, model: LightningModule, *args):
-        return model.transfer_batch_to_device(args, model.trainer.root_gpu)
 
     def _check_fairscale(self):
         if not _FAIRSCALE_AVAILABLE:
