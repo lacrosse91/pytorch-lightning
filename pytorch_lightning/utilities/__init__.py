@@ -34,6 +34,7 @@ from pytorch_lightning.utilities.imports import (  # noqa: F401
     _XLA_AVAILABLE,
     _OMEGACONF_AVAILABLE,
     _HYDRA_AVAILABLE,
+    _HYDRA_EXPERIMENTAL_AVAILABLE,
     _HOROVOD_AVAILABLE,
     _TORCHTEXT_AVAILABLE,
     _FAIRSCALE_AVAILABLE,
